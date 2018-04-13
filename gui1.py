@@ -1,4 +1,5 @@
 from tkinter import *
+import alldb
 
 		
 class LoginFrame(Frame):
