@@ -37,6 +37,7 @@ class LoginFrame(Frame):
 
 
 root  = Tk() #Tk is the constructor
+root.title('Mind Clock')
 w  = Label(root,text="Welcome to the Mind Clock Game",font=("Papyrus",24))
 w.pack(side="top")
 lf = LoginFrame(root)
