@@ -1,4 +1,4 @@
-from tkinter import Toplevel, Button, Frame
+from tkinter import Toplevel, Button, Frame, E, Label, Entry
 
 class AdminLogin(Toplevel):
 	def __init__(self, master=None):
@@ -17,4 +17,16 @@ class AdminLogin(Toplevel):
 		self.center()
 		self.geometry("300x200")
 		self.title("Admin Login")
-		button = Button(self, text="submit").grid(row=2, column=2)
+		# login action
+		Label(self, text="Username").grid(row=0, sticky=E)
+		Label(self, text="Password").grid(row=1, sticky=E)
+
+		self.username=Entry(self).grid(row=0, column=1)
+		self.password=Entry(self, show="*").grid(row=1, column=1)
+
+		Button(self, text="Login", command=self._login).grid(row=2, columnspan=2)
+        # password.grid(row=1, sticky=E)
+		# end
+
+	def _login(self):
+		print("login action called")
