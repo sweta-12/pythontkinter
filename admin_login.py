@@ -1,10 +1,13 @@
 from tkinter import Toplevel, Button, Frame, E, Label, Entry
 
+# import admin_login(AdminLogin)
+# from admin_login import AdminLogin
+
 class AdminLogin(Toplevel):
 	def __init__(self, master=None):
 		Toplevel.__init__(self, master)
 		self.toplevel = master
-
+		
 		self.init_login_section()
 
 	def center(self):
@@ -14,6 +17,9 @@ class AdminLogin(Toplevel):
 
 
 	def init_login_section(self):
+
+		self.toplevel.hideWindow()
+
 		self.center()
 		self.geometry("300x200")
 		self.title("Admin Login")
@@ -25,8 +31,8 @@ class AdminLogin(Toplevel):
 		self.password=Entry(self, show="*").grid(row=1, column=1)
 
 		Button(self, text="Login", command=self._login).grid(row=2, columnspan=2)
-        # password.grid(row=1, sticky=E)
-		# end
+		# password.grid(row=1, sticky=E)
 
 	def _login(self):
-		print("login action called")
+		self.destroy()
+		self.toplevel.showWindow()

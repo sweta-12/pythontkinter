@@ -18,15 +18,22 @@ class MainWindow(Frame):
 		adminBtn = Button(self, text="Admin", command=self.init_admin_login, width=7)
 		adminBtn.place(x=130, y=60)
 
-		testBtn = Button(self, text="User", command=self.init_test, width=7)
+		testBtn = Button(self, text="User", command=self.user_window, width=7)
 		testBtn.place(x=200, y=60)
 		# End
 
+	def user_window(self):
+		pass
+
 	def init_admin_login(self):
+		# self.master.withdraw()
 		login = AdminLogin(self)
 
-	def init_test(self):
-		pass
+	def hideWindow(self):
+		self.master.withdraw()
+
+	def showWindow(self):
+		self.master.deiconify()
 
 root = Tk()
 root.title("Mind Clock")
