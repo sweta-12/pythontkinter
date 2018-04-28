@@ -16,6 +16,10 @@ class AdminLogin(Toplevel):
 		self.geometry("+%d+%d" % (x, y))
 
 
+	def callback(self):
+		self.toplevel.showWindow()
+		self.destroy()
+
 	def init_login_section(self):
 
 		self.toplevel.hideWindow()
@@ -33,6 +37,7 @@ class AdminLogin(Toplevel):
 		Button(self, text="Login", command=self._login).grid(row=2, columnspan=2)
 		# password.grid(row=1, sticky=E)
 
+		self.protocol("WM_DELETE_WINDOW", self.callback)
+
 	def _login(self):
-		self.destroy()
-		self.toplevel.showWindow()
+		pass
