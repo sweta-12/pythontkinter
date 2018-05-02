@@ -2,7 +2,7 @@ from tkinter import Toplevel, Button, Frame, E, Label, Entry
 
 # import admin_login(AdminLogin)
 # from admin_login import AdminLogin
-
+from demo import Dash_board
 class AdminLogin(Toplevel):
 	def __init__(self, master=None):
 		Toplevel.__init__(self, master)
@@ -20,6 +20,10 @@ class AdminLogin(Toplevel):
 		self.toplevel.showWindow()
 		self.destroy()
 
+	def init_Dash_board(self):
+		win1=Dash_board(self)
+	
+
 	def init_login_section(self):
 
 		self.toplevel.hideWindow()
@@ -34,7 +38,8 @@ class AdminLogin(Toplevel):
 		self.username=Entry(self).grid(row=0, column=1)
 		self.password=Entry(self, show="*").grid(row=1, column=1)
 
-		Button(self, text="Login", command=self._login).grid(row=2, columnspan=2)
+		login_btn=Button(self, text="Login", command=self.init_Dash_board)
+		login_btn.grid(row=2, columnspan=2)
 		# password.grid(row=1, sticky=E)
 
 		self.protocol("WM_DELETE_WINDOW", self.callback)
