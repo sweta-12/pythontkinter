@@ -38,7 +38,7 @@ class AdminLogin(Toplevel):
 		self.username=Entry(self).grid(row=0, column=1)
 		self.password=Entry(self, show="*").grid(row=1, column=1)
 
-		login_btn=Button(self, text="Login", command=self.init_Dash_board)
+		login_btn=Button(self, text="Login", command=self._login)
 		login_btn.grid(row=2, columnspan=2)
 		# password.grid(row=1, sticky=E)
 
