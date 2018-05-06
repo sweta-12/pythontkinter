@@ -10,6 +10,7 @@ class MindClockDb:
 
 	# init database structure
 	def init_db(self):
+
 		self.create_table("CREATE TABLE IF NOT EXISTS admins( id INTEGER PRIMARY KEY AUTOINCREMENT , username text, password text)")
 		self.create_table("CREATE TABLE IF NOT EXISTS users( id INTEGER PRIMARY KEY AUTOINCREMENT , fname text, lname text, age int, weight int, height int)")
 		self.create_table("CREATE TABLE IF NOT EXISTS test_types( id INTEGER  PRIMARY KEY AUTOINCREMENT , age_limit int, intervals int, replicate int)")
@@ -19,13 +20,6 @@ class MindClockDb:
 
 	def create_table(self, sql):
 		self.cursor.execute(sql)
-		self.db.commit()
-
-	def create_admin(self):
-		sql = "INSERT INTO admins(username, password) VALUES('admin', 'admin')"
-		self.cursor.execute(sql)
-		self.db.commit()
-
 	# Read
 	def select(self, sql):
 		try:
@@ -65,7 +59,6 @@ class MindClockDb:
 	def __del__(self):
 		self.cursor.close()
 		self.db.close()
->>>>>>> Stashed changes
 
 dbObj = MindClockDb()
 
