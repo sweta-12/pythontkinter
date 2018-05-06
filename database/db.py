@@ -13,12 +13,13 @@ class MindClockDb:
 		self.cursor.execute(adminsql)
 		# users table
 		userssql = "CREATE TABLE IF NOT EXISTS users( id int, fname text, lname text, age int, weight int, height int)"
-		self.cursor.execute(userssql)
-		self.db.commit()
+		self.cursor.execute(adminsql)
 
-	def __del__(self):
-		self.cursor.close()
-		self.db.close()
+		#operations table
+		operationssql = "CREATE TABLE IF NOT EXISTS operations( id int, user_id int, replicate int, production_time int, reproduction_time int, early_time int, delay_time, type char)"
+		self.cursor.execute(operationssql)
+
+		self.db.commit()
 
 	def select(self):
 		pass
