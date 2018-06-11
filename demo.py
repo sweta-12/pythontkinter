@@ -6,14 +6,14 @@ from tkinter import ttk
 class Dash_board(Toplevel):
 
 	def __init__(self,master=None):
-		#Toplevel.__init__(self, master)
-		#self.toplevel = master
-		window = Tk()
-		#tab1=Tk()
+		self.master = master
+		self.dashboard_master = Toplevel(master)
+
+		
  
-		window.title("DASHBOARD")
+		self.dashboard_master.title("DASHBOARD")
  
-		tab_control = ttk.Notebook(window)
+		tab_control = ttk.Notebook(self.dashboard_master)
  
 		tab1 = ttk.Frame(tab_control)
  
@@ -44,16 +44,16 @@ class Dash_board(Toplevel):
 		e3.grid(row=3, column=1)
 		e4.grid(row=4, column=1)
 
-#lbl1 = Label(tab1, text= 'R replication',anchor=CENTER, justify=CENTER, fg="black", padx=5, pady=5)
-#lbl1.grid(column=0, row=4)
 
-#def init_TESTCASE(self):
-		#self.pack(fill=BOTH, expand=1)
-		# heder text
-		#header =lbl1(self, text="AGE", anchor=CENTER, justify=CENTER, fg="blue", pady=20)
-		#header.pack()
 		lbl2 = Label(tab2, text= 'label2',padx=5, pady=5)
 		lbl2.grid(column=0, row=0)
 		tab_control.pack(expand=1, fill='both')
- 
-		window.mainloop()
+
+		logout_button = Button(self.dashboard_master, text="Logout", command=self.logout)
+		logout_button.pack()
+
+		self.dashboard_master.protocol("WM_DELETE_WINDOW",self.logout)
+
+	def logout(self):
+		self.master.deiconify()
+		self.dashboard_master.destroy()

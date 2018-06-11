@@ -1,43 +1,36 @@
-from tkinter import Frame, Tk, Menu, BOTH, Label, CENTER, Button, PhotoImage
+from tkinter import Label, Tk, Button, Entry, Frame
 
 from admin_login import AdminLogin
-
-class MainWindow(Frame):
+from user_login import UserLogin
+class MainWindow():
 	def __init__(self, master=None):
-		Frame.__init__(self,master)
 		self.master = master
-		self.init_window()
 
-	def init_window(self):
-		self.pack(fill=BOTH, expand=1)
-		# heder text
-		header = Label(self, text="Mind Clock", anchor=CENTER, justify=CENTER, fg="blue", pady=20)
-		header.pack()
+		self.frame = Frame(self.master)
 
-		# Admin and user button section
-		adminBtn = Button(self, text="Admin", command=self.init_admin_login, width=7)
-		adminBtn.place(x=130, y=60)
+		self.label = Label(self.master, text="Mind Clock")
+		self.label.pack()
 
-		testBtn = Button(self, text="User", command=self.user_window, width=7)
-		testBtn.place(x=200, y=60)
-		# End
+		self.admin_button = Button(self.master, text="Admin", command=self.admin_window)
+		self.admin_button.pack()
+
+		self.user_button = Button(self.master, text="User", command=self.user_window)
+		self.user_button.pack()
+
+		self.quit = Button(self.master, text="Exit", command=master.quit)
+		self.quit.pack()
+		self.frame.pack()
+
+	def admin_window(self):
+		self.master.withdraw()
+		self.adminwindow = AdminLogin(self.master)
+		print("admin window")
 
 	def user_window(self):
-		pass
-
-	def init_admin_login(self):
-		# self.master.withdraw()
-		login = AdminLogin(self)
-
-	def hideWindow(self):
 		self.master.withdraw()
-
-	def showWindow(self):
-		self.master.deiconify()
+		self.userwindow = UserLogin(self.master)
+		print("user window")
 
 root = Tk()
-root.title("Mind Clock")
-root.geometry("400x200")
-root.resizable(width=False, height=False)
-main = MainWindow(root)
+main_window = MainWindow(root)
 root.mainloop()

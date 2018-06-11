@@ -1,48 +1,41 @@
-from tkinter import Toplevel, Button, Frame, E, Label, Entry
+from tkinter import Label, Button, Toplevel, Entry, Frame
 
-# import admin_login(AdminLogin)
-# from admin_login import AdminLogin
 from demo import Dash_board
-class AdminLogin(Toplevel):
-	def __init__(self, master=None):
-		Toplevel.__init__(self, master)
-		self.toplevel = master
-		
-		self.init_login_section()
 
-	def center(self):
-		x = (self.winfo_screenwidth() - self.winfo_reqwidth()) / 2
-		y = (self.winfo_screenheight() - self.winfo_reqheight()) / 2
-		self.geometry("+%d+%d" % (x, y))
+class AdminLogin():
+	def __init__(self, master):
+		self.master = master
+		self.adminlogin_master = Toplevel(master)
 
+		self.frame = Frame(self.adminlogin_master)
+		self.username = Entry(self.adminlogin_master)
+		self.username.pack()
 
-	def callback(self):
-		self.toplevel.showWindow()
-		self.destroy()
+		self.password = Entry(self.adminlogin_master, show="*")
+		self.password.pack()
 
-	def init_Dash_board(self):
-		win1=Dash_board(self)
-	
+		self.login_button = Button(self.adminlogin_master, text="Login", command=self.login)
+		self.login_button.pack()
 
-	def init_login_section(self):
+		self.login_button = Button(self.adminlogin_master, text="Cancel", command=self.cancel)
+		self.login_button.pack()
 
-		self.toplevel.hideWindow()
+		self.frame.pack()
 
-		self.center()
-		self.geometry("300x200")
-		self.title("Admin Login")
-		# login action
-		Label(self, text="Username").grid(row=0, sticky=E)
-		Label(self, text="Password").grid(row=1, sticky=E)
+		self.adminlogin_master.protocol("WM_DELETE_WINDOW",self.cancel)
+		self.adminlogin_master.bind('<Return>', self.login)
 
-		self.username=Entry(self).grid(row=0, column=1)
-		self.password=Entry(self, show="*").grid(row=1, column=1)
+	def cancel(self):
+		self.adminlogin_master.destroy()
+		self.master.deiconify()
 
-		login_btn=Button(self, text="Login", command=self._login)
-		login_btn.grid(row=2, columnspan=2)
-		# password.grid(row=1, sticky=E)
-
-		self.protocol("WM_DELETE_WINDOW", self.callback)
-
-	def _login(self):
-		pass
+	def login(self,event=None):
+		# match username and password
+		if self.username.get() == "admin" and self.password.get() == "admin":
+			# print("Login success")
+			self.adminlogin_master.destroy()
+			# call dashboard window
+			dashboard = Dash_board(self.master)
+			# self.master.deiconify()
+			# print(self.username.get())
+			# print(self.password.get())
