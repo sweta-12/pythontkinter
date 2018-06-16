@@ -8,7 +8,7 @@ class MainWindow():
 
 		self.frame = Frame(self.master)
 
-		self.label = Label(self.master, text="Mind Clock")
+		self.label = Label(self.master, text="Welcome to the Mind Clock Game")
 		self.label.pack()
 
 		self.admin_button = Button(self.master, text="Admin", command=self.admin_window)
@@ -32,5 +32,8 @@ class MainWindow():
 		print("user window")
 
 root = Tk()
+root.geometry('500x400')
+root.config(bg='ivory')
+root.title("Mindclock")
 main_window = MainWindow(root)
 root.mainloop()

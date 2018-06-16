@@ -1,6 +1,5 @@
 from tkinter import Label, Button, Toplevel, Entry, Frame
 
-
 class UserLogin(Toplevel):
 	def __init__(self, master):
 		self.master = master
@@ -27,7 +26,7 @@ class UserLogin(Toplevel):
 	def cancel(self):
 		self.userlogin_master.destroy()
 		self.master.deiconify()
-
+	
 	def login(self,event=None):
 		# match username and password
 		if self.username.get() == "user" and self.password.get() == "user":
