@@ -6,3 +6,6 @@ class McError:
 
 	def error(self,head, msg):
 		messagebox.showerror(head, msg)
+
+	def success(self, head, msg):
+		messagebox.showinfo(head,msg)
