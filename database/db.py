@@ -12,7 +12,7 @@ class MindClockDb:
 	def init_db(self):
 
 		self.create_table("CREATE TABLE IF NOT EXISTS admins( id INTEGER PRIMARY KEY AUTOINCREMENT , username text, password text)")
-		self.create_table("CREATE TABLE IF NOT EXISTS users( id INTEGER PRIMARY KEY AUTOINCREMENT , fname text, lname text, age int, weight int, height int)")
+		self.create_table("CREATE TABLE IF NOT EXISTS users( id INTEGER PRIMARY KEY AUTOINCREMENT , age int, weight TEXT, height TEXT, gender TEXT, userid TEXT)")
 		self.create_table("CREATE TABLE IF NOT EXISTS test_types( id INTEGER  PRIMARY KEY AUTOINCREMENT , age_limit int, intervals int, replicate int)")
 		self.create_table("CREATE TABLE IF NOT EXISTS operations( id INTEGER PRIMARY KEY AUTOINCREMENT , user_id int, replicate int, production_time int, reproduction_time int, early_time int, delay_time, type char)")
 
@@ -60,7 +60,8 @@ class MindClockDb:
 		self.cursor.close()
 		self.db.close()
 
-dbObj = MindClockDb()
+if __name__ == "__main__":
+	dbObj = MindClockDb()
 
 # dbObj.select("SELECT * FROM admins")
 	# row = dbObj.single_record()

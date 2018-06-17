@@ -1,11 +1,13 @@
 from tkinter import *
-import tkinter.messagebox as tm
 
+from database.db import MindClockDb
+from errors import McError
 
 class signupFrame(Frame):
     def __init__(self, master=None):
         self.master = master
         self.signup_master = Toplevel(master)
+        self.messages = McError()
 
         self.label_Username = Label(self.signup_master, text="ID")
         self.label_Age = Label(self.signup_master, text="Age")
@@ -60,16 +62,25 @@ class signupFrame(Frame):
 
     def _signup_btn_clicked(self):
         # print("Clicked")
+        db = MindClockDb()
+
         username = self.entry_Username.get()
         age = self.entry_Age.get()
         gender = self.entry_Gender.get()
         height = self.entry_Height.get()
         weight = self.entry_Weight.get()
+
+        sql = "INSERT INTO users(userid, age, weight, height, gender) VALUES('{}',{},'{}','{}','{}')".format(username, age, weight, height, gender)
+
+        if(db.insert(sql)):
+            self.messages.success("Success", "Registered Successful!")
+            self.signup_master.destroy()
+        else:
+            self.messages.error("Error", "Something went wrong!")
+
         #BMI = self.entry_BMI.get()
         # password = self.entry_password.get()
         #confirm password = self.entry_confirm password.get()
-
-        print(username, gender)
 
         #if username == " password == "password":
             #tm.showinfo("Login info", "Welcome John")
