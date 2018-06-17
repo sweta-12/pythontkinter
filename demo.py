@@ -14,6 +14,7 @@ class Dash_board(Toplevel):
 		self.dashboard_master.title("DASHBOARD")
  
 		tab_control = ttk.Notebook(self.dashboard_master)
+		#ttk.Style().configure(self.dashboard_master, background="black", foreground='green')  
  
 		tab1 = ttk.Frame(tab_control)
  
@@ -21,6 +22,7 @@ class Dash_board(Toplevel):
  
 		tab_control.add(tab1, text='TESTCASE')
 		tab_control.add(tab2, text='RECORD')
+		
 
 		lbl1=Label(tab1, text= 'AGE',anchor=CENTER, justify=CENTER, fg="black", padx=5, pady=5)
 		lbl1.grid(column=0, row=0)

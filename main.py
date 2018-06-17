@@ -13,7 +13,7 @@ class MainWindow():
 		img=PhotoImage(file="assets/admin.gif")
 		img1=PhotoImage(file="assets/user.gif")
 
-		self.label = Label(self.master, text="Welcome to the Mind Clock Game")
+		self.label = Label(self.master, text="Welcome to the Mind Clock Game",font="papyrus")
 		self.label.config(bg='#34af23')
 		self.label.pack()
 
@@ -27,8 +27,8 @@ class MainWindow():
 		self.user_button.config(bg='#34af23')
 		self.user_button.pack(side=RIGHT)
 
-		self.quit = Button(self.master, text="Exit", command=master.quit)
-		self.quit.pack()
+		#self.quit = Button(self.master, text="Exit", command=master.quit)
+		#self.quit.pack()
 		self.frame.pack()
 
 	def admin_window(self):

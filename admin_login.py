@@ -16,10 +16,12 @@ class AdminLogin():
 
 		self.login_button = Button(self.adminlogin_master, text="Login", command=self.login)
 		self.login_button.pack()
+		self.login_button.config(bg='navy', fg='white', bd=4) 
 
 		self.login_button = Button(self.adminlogin_master, text="Cancel", command=self.cancel)
 		self.login_button.pack()
-
+		self.login_button.config(bg='red', fg='white', bd=4) 
+		
 		self.frame.pack()
 
 		self.adminlogin_master.protocol("WM_DELETE_WINDOW",self.cancel)
