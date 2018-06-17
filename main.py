@@ -11,7 +11,8 @@ class MainWindow():
 		img=PhotoImage(file="assets/admin.gif")
 		img1=PhotoImage(file="assets/user.gif")
 
-		self.label = Label(self.master, text="Welcome to the Mind Clock Game",font="papyrus")
+		self.label = Label(self.master, text="Welcome to the Mind Clock Game")
+		self.label.config(font=("Papyrus", 25))
 		self.label.config(bg='#34af23')
 
 		self.label.pack()
