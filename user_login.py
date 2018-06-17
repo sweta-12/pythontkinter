@@ -1,5 +1,7 @@
 from tkinter import Label, Button, Toplevel, Entry, Frame
 
+from signup import signupFrame
+
 class UserLogin(Toplevel):
 	def __init__(self, master):
 		self.master = master
@@ -12,11 +14,14 @@ class UserLogin(Toplevel):
 		self.password = Entry(self.userlogin_master, show="*")
 		self.password.pack()
 
-		self.login_button = Button(self.userlogin_master, text="Login", command=self.login)
+		self.login_button = Button(self.userlogin_master, text="Login", command=self.login,width=7)
+		self.login_button.pack()
+
+		self.login_button = Button(self.userlogin_master, text="signup", command=self.signup,width=7)
 		self.login_button.pack()
 		self.login_button.config(bd=4) 
 
-		self.login_button = Button(self.userlogin_master, text="Cancel", command=self.cancel)
+		self.login_button = Button(self.userlogin_master, text="Cancel", command=self.cancel,width=7)
 		self.login_button.pack()
 		self.login_button.config(bd=4) 
 
@@ -28,6 +33,15 @@ class UserLogin(Toplevel):
 	def cancel(self):
 		self.userlogin_master.destroy()
 		self.master.deiconify()
+
+	def signup(self):
+
+		signup = signupFrame(self.master)
+		# self.master.withdraw()
+		# self.adminwindow = signup()
+		# print("signup window")
+		#self.userlogin_master.destroy()
+		#self.master.deiconify()
 	
 	def login(self,event=None):
 		# match username and password

@@ -1,6 +1,6 @@
 from tkinter import Label, Button, Toplevel, Entry, Frame
 
-from demo import Dash_board
+from admindashboard import Dash_board
 
 class AdminLogin():
 	def __init__(self, master):
@@ -8,13 +8,14 @@ class AdminLogin():
 		self.adminlogin_master = Toplevel(master)
 
 		self.frame = Frame(self.adminlogin_master)
+
 		self.username = Entry(self.adminlogin_master)
 		self.username.pack()
 
 		self.password = Entry(self.adminlogin_master, show="*")
 		self.password.pack()
 
-		self.login_button = Button(self.adminlogin_master, text="Login", command=self.login)
+		self.login_button = Button(self.adminlogin_master, text="Login", command=self.login,width=7)
 		self.login_button.pack()
 		self.login_button.config(fg='black', bd=4) 
 
