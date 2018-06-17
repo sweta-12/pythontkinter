@@ -8,22 +8,22 @@ class UserLogin(Toplevel):
 		self.userlogin_master = Toplevel(master)
 
 		self.frame = Frame(self.userlogin_master)
+
+		self.userlabel = Label(self.userlogin_master, text="User ID")
 		self.username = Entry(self.userlogin_master)
+
+		self.userlabel.pack()
 		self.username.pack()
 
-		self.password = Entry(self.userlogin_master, show="*")
-		self.password.pack()
-
-		self.login_button = Button(self.userlogin_master, text="Login", command=self.login,width=7)
+		self.login_button = Button(self.userlogin_master, text="Start", command=self.login,width=7)
 		self.login_button.pack()
 
-		self.login_button = Button(self.userlogin_master, text="signup", command=self.signup,width=7)
-		self.login_button.pack()
-		self.login_button.config(bd=4) 
+		self.login_button = Button(self.userlogin_master, text="Register", command=self.signup,width=7)
+		self.login_button.pack() 
 
 		self.login_button = Button(self.userlogin_master, text="Cancel", command=self.cancel,width=7)
-		self.login_button.pack()
-		self.login_button.config(bd=4) 
+		self.login_button.pack() 
+
 
 		self.frame.pack()
 
@@ -35,13 +35,7 @@ class UserLogin(Toplevel):
 		self.master.deiconify()
 
 	def signup(self):
-
 		signup = signupFrame(self.master)
-		# self.master.withdraw()
-		# self.adminwindow = signup()
-		# print("signup window")
-		#self.userlogin_master.destroy()
-		#self.master.deiconify()
 	
 	def login(self,event=None):
 		# match username and password
