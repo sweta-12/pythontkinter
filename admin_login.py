@@ -1,4 +1,4 @@
-from tkinter import Label, Button, Toplevel, Entry, Frame
+from tkinter import Label, Button, Toplevel, Entry, Frame, Canvas
 
 from admindashboard import Dash_board
 
@@ -8,10 +8,10 @@ class AdminLogin():
 		self.adminlogin_master = Toplevel(master)
 
 		self.frame = Frame(self.adminlogin_master)
-
+		self.username = Label(self.adminlogin_master, text="Username")
 		self.username = Entry(self.adminlogin_master)
 		self.username.pack()
-
+		self.password = Label(self.adminlogin_master, text="Password")
 		self.password = Entry(self.adminlogin_master, show="*")
 		self.password.pack()
 
@@ -27,7 +27,8 @@ class AdminLogin():
 
 		self.adminlogin_master.protocol("WM_DELETE_WINDOW",self.cancel)
 		self.adminlogin_master.bind('<Return>', self.login)
-
+		self.adminlogin_master.geometry('500x400')
+		
 	def cancel(self):
 		self.adminlogin_master.destroy()
 		self.master.deiconify()
@@ -43,3 +44,4 @@ class AdminLogin():
 			# print(self.username.get())
 			# print(self.password.get())
 	#.geometry('500x400')
+	

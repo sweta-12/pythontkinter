@@ -53,8 +53,9 @@ class Dash_board(Toplevel):
 
 		logout_button = Button(self.dashboard_master, text="Logout", command=self.logout)
 		logout_button.pack()
-
+		self.dashboard_master.geometry('500x400')
 		self.dashboard_master.protocol("WM_DELETE_WINDOW",self.logout)
+		
 
 	def logout(self):
 		self.master.deiconify()

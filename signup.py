@@ -56,7 +56,7 @@ class signupFrame(Frame):
         #self.login_button = Button(self.master, text="login", command=self.login_window)
         #self.login_button.pack()
 
-
+        self.signup_master.geometry('500x400')
         # self.pack()
    
 
@@ -73,10 +73,13 @@ class signupFrame(Frame):
         sql = "INSERT INTO users(userid, age, weight, height, gender) VALUES('{}',{},'{}','{}','{}')".format(username, age, weight, height, gender)
 
         if(db.insert(sql)):
-            self.messages.success("Success", "Registered Successful!")
+            self.messages.success("Success", "Registered Successfully!")
             self.signup_master.destroy()
         else:
+            self.signup_master.withdraw()
             self.messages.error("Error", "Something went wrong!")
+            self.signup_master.deiconify()
+
 
         #BMI = self.entry_BMI.get()
         # password = self.entry_password.get()

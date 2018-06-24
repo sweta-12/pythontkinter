@@ -1,6 +1,7 @@
 from tkinter import Label, Button, Toplevel, Entry, Frame
 
 from signup import signupFrame
+from test_case import TestCase
 
 class UserLogin(Toplevel):
 	def __init__(self, master):
@@ -15,7 +16,7 @@ class UserLogin(Toplevel):
 		self.userlabel.pack()
 		self.username.pack()
 
-		self.login_button = Button(self.userlogin_master, text="Start", command=self.login,width=7)
+		self.login_button = Button(self.userlogin_master, text="Start", command=self.test,width=7)
 		self.login_button.pack()
 
 		self.login_button = Button(self.userlogin_master, text="Register", command=self.signup,width=7)
@@ -29,6 +30,7 @@ class UserLogin(Toplevel):
 
 		self.userlogin_master.protocol("WM_DELETE_WINDOW",self.cancel)
 		self.userlogin_master.bind('<Return>', self.login)
+		self.userlogin_master.geometry('500x400')
 
 	def cancel(self):
 		self.userlogin_master.destroy()
@@ -47,3 +49,5 @@ class UserLogin(Toplevel):
 			# self.master.deiconify()
 			# print(self.username.get())
 			# print(self.password.get())
+	def test(self):
+		window = TestCase(self.master, x1=50, y1=50, x2=150, y2=150)
