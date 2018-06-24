@@ -37,7 +37,8 @@ class UserLogin(Toplevel):
 		self.master.deiconify()
 
 	def signup(self):
-		signup = signupFrame(self.master)
+		self.userlogin_master.withdraw()
+		self.signup = signupFrame(self.userlogin_master)
 	
 	def login(self,event=None):
 		# match username and password

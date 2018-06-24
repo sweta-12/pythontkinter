@@ -2,6 +2,7 @@ from tkinter import Label, Tk, Button, Entry, Frame, PhotoImage, RIGHT, LEFT,BOT
 
 from admin_login import AdminLogin
 from user_login import UserLogin
+#Frame=TK()
 
 class MainWindow(Frame):
 	def __init__(self, master=None):
@@ -15,9 +16,10 @@ class MainWindow(Frame):
 		img=PhotoImage(file="assets/admin.gif")
 		img1=PhotoImage(file="assets/user.gif")
 
-		self.label = Label(self.master, text="Welcome to the Mind Clock Game")
-		self.label.config(font=("Papyrus", 25))
+		self.label = Label(self.master, text="Welcome to the Mind Clock Game",font=("papyrus",25))
+
 		self.label.config(bg='#34af23')
+		#Frame.geometry('350x200')
 
 		self.label.pack()
 
