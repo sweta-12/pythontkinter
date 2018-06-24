@@ -68,7 +68,7 @@ class signupFrame(Frame):
 
         self.signup_master.geometry('500x400')
         # self.pack()
-   
+        self.signup_master.protocol("WM_DELETE_WINDOW",self.cancel)
 
     def _signup_btn_clicked(self):
         # print("Clicked")
@@ -92,6 +92,9 @@ class signupFrame(Frame):
             self.signup_master.withdraw()
             self.messages.error("Error", "Something went wrong!")
             self.signup_master.deiconify()
+    def cancel(self):
+        self.signup_master.destroy()
+        self.master.deiconify()
 
 
         #BMI = self.entry_BMI.get()
