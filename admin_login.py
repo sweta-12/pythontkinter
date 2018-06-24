@@ -4,24 +4,35 @@ from admindashboard import Dash_board
 
 class AdminLogin():
 	def __init__(self, master):
+
 		self.master = master
 		self.adminlogin_master = Toplevel(master)
 
 		self.frame = Frame(self.adminlogin_master)
+		#print(type(self.username)) 
 
+		#Label(self, text="Username").grid(row=0, sticky=E)
+		#Label(self, text="Password").grid(row=1, sticky=E)
+
+
+		#Label(self, text="Username").grid(row=0, sticky=E)
 		self.username = Entry(self.adminlogin_master)
 		self.username.pack()
 
+		#Label(self, text="Password").grid(row=1, sticky=E)
 		self.password = Entry(self.adminlogin_master, show="*")
 		self.password.pack()
 
+		#self.label_username.grid(row=0, sticky=E)
+		#self.label_password.grid(row=0, sticky=E)
+
 		self.login_button = Button(self.adminlogin_master, text="Login", command=self.login,width=7)
 		self.login_button.pack()
-		self.login_button.config(bg='navy', fg='white', bd=4) 
+		#self.login_button.config(bg='navy', fg='white', bd=4) 
 
 		self.login_button = Button(self.adminlogin_master, text="Cancel", command=self.cancel)
 		self.login_button.pack()
-		self.login_button.config(bg='red', fg='white', bd=4) 
+		#self.login_button.config(bg='red', fg='white', bd=4) 
 		
 		self.frame.pack()
 
