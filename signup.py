@@ -70,6 +70,13 @@ class signupFrame(Frame):
         # self.pack()
         self.signup_master.protocol("WM_DELETE_WINDOW",self.cancel)
 
+
+    def BMI(self, weight, height):
+        bmi=(int(weight))/(int(height)*int(height))
+
+        return bmi
+
+
     def _signup_btn_clicked(self):
         # print("Clicked")
         db = MindClockDb()
@@ -82,16 +89,20 @@ class signupFrame(Frame):
         height = self.entry_Height.get()
         weight = self.entry_Weight.get()
 
+        bmi = self.BMI(weight,height)
+        print(bmi)
+
         sql = "INSERT INTO users(userid,firstname,lastname, age, weight, height, gender) VALUES('{}','{}','{}',{},'{}','{}','{}')".format(username,firstname,lastname, age, weight, height, gender)
 
         if(db.insert(sql)):
             self.messages.success("Success", "Registered Successfully!")
             self.signup_master.destroy()
-            self.userlogin_master.deiconify()
+            self.master.deiconify()
         else:
             self.signup_master.withdraw()
             self.messages.error("Error", "Something went wrong!")
             self.signup_master.deiconify()
+
     def cancel(self):
         self.signup_master.destroy()
         self.master.deiconify()
