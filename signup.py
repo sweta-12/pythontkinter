@@ -90,9 +90,9 @@ class signupFrame(Frame):
         weight = self.entry_Weight.get()
 
         bmi = self.BMI(weight,height)
-        print(bmi)
+        #print(bmi)
 
-        sql = "INSERT INTO users(userid,firstname,lastname, age, weight, height, gender) VALUES('{}','{}','{}',{},'{}','{}','{}')".format(username,firstname,lastname, age, weight, height, gender)
+        sql = "INSERT INTO users(userid,firstname,lastname, age, weight, height, gender, bmi) VALUES('{}','{}','{}',{},'{}','{}','{}','{}')".format(username,firstname,lastname, age, weight, height, gender, bmi)
 
         if(db.insert(sql)):
             self.messages.success("Success", "Registered Successfully!")
