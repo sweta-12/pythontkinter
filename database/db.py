@@ -1,12 +1,15 @@
 import sqlite3
+from errors import McError
 
 class MindClockDb:
-	def __init__(self):
+	def __init__(self,signup_master):
 		self.db = sqlite3.connect("mindclock.db")
 		self.cursor = self.db.cursor()
 		self.cursor.row_factory = sqlite3.Row
 		# create tables
 		self.init_db()
+		self.messages = McError()
+		self.window = signup_master
 
 	# init database structure
 	def init_db(self):
@@ -36,10 +39,14 @@ class MindClockDb:
 			self.cursor.execute(sql)
 			self.db.commit()
 			return True
-		except sqlite3.OperationalError as e:
-			print(e)
+		except : 
+			self.window.withdraw()
+			#message box showing the error
+			self.messages.error("Error","Values already exist")
+			self.window.deiconify()
 
 	def update(self, sql):
+
 		try:
 			self.cursor.execute(sql)
 			self.db.commit()

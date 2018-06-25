@@ -77,10 +77,11 @@ class signupFrame(Toplevel):
         bmi=(int(weight))/(int(height)*int(height))
 
         return bmi
+   
 
 
     def _signup_btn_clicked(self):
-        db = MindClockDb()
+        db = MindClockDb(self.signup_master)
 
         username = self.entry_Username.get()
         firstname=self.entry_Firstname.get()
