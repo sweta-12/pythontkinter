@@ -3,10 +3,12 @@ from tkinter import *
 from database.db import MindClockDb
 from errors import McError
 
-class signupFrame(Frame):
-    def __init__(self, master=None):
+class signupFrame(Toplevel):
+    def __init__(self, master):
+        
         self.master = master
         self.signup_master = Toplevel(master)
+        self.frame = Frame(self.signup_master)
         self.messages = McError()
 
         self.label_Username = Label(self.signup_master, text="ID")
@@ -78,7 +80,6 @@ class signupFrame(Frame):
 
 
     def _signup_btn_clicked(self):
-        # print("Clicked")
         db = MindClockDb()
 
         username = self.entry_Username.get()
@@ -90,7 +91,7 @@ class signupFrame(Frame):
         weight = self.entry_Weight.get()
 
         bmi = self.BMI(weight,height)
-        #print(bmi)
+        
 
         sql = "INSERT INTO users(userid,firstname,lastname, age, weight, height, gender, bmi) VALUES('{}','{}','{}',{},'{}','{}','{}','{}')".format(username,firstname,lastname, age, weight, height, gender, bmi)
 
@@ -118,9 +119,7 @@ class signupFrame(Frame):
             #tm.showerror("Login error", "Incorrect username")
     
 
-print(__name__)
-
-if __name__ == "__main__":
-    root = Tk()
-    lf = signupFrame(root)
-    root.mainloop()
+# if __name__ == "__main__":
+#     root = Tk()
+#     lf = signupFrame(root)
+#     root.mainloop()

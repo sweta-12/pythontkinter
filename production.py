@@ -1,16 +1,19 @@
 from tkinter import *
 
-canvas_width = 300
-canvas_height =300
+class Production(Toplevel):
+	def __init__(self,master,**params):
+		self.testcase_master = Toplevel(master)
+		self.x1 = params['x1']
+		self.y1 = params['y1']
+		self.x2 = params['x2']
+		self.y2 = params['y2']
+		# self.canvas = master
+		self.canvas = Canvas(self.testcase_master, width = 700, height = 400)
+		self.canvas.create_oval(self.x1, self.y1, self.x2, self.y2, fill="green")
+		self.canvas.after(5000, self.hide_ball)
+		self.canvas.pack()
 
-master = Tk()
+	def hide_ball(self):
+		self.canvas.destroy()
 
-canvas = Canvas(master, 
-           width=canvas_width, 
-           height=canvas_height)
-canvas.pack()
 
-img = PhotoImage(file="photo-Screenshot(15).png")
-canvas.create_image(20,20, anchor=NW, image=img)
-
-mainloop()

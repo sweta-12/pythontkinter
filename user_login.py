@@ -1,7 +1,7 @@
 from tkinter import Label, Button, Toplevel, Entry, Frame
 
 from signup import signupFrame
-from test_case import TestCase
+from production import Production
 
 class UserLogin(Toplevel):
 	def __init__(self, master):
@@ -16,7 +16,7 @@ class UserLogin(Toplevel):
 		self.userlabel.pack()
 		self.username.pack()
 
-		self.login_button = Button(self.userlogin_master, text="Start", command=self.test,width=7)
+		self.login_button = Button(self.userlogin_master, text="Start", command=self.production_open,width=7)
 		self.login_button.pack()
 
 		self.login_button = Button(self.userlogin_master, text="Register", command=self.signup,width=7)
@@ -50,5 +50,5 @@ class UserLogin(Toplevel):
 			# self.master.deiconify()
 			# print(self.username.get())
 			# print(self.password.get())
-	def test(self):
-		window = TestCase(self.master, x1=50, y1=50, x2=150, y2=150)
+	def production_open(self):
+		window = Production(self.master, x1=50, y1=50, x2=150, y2=150)
