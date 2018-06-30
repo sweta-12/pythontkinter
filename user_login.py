@@ -1,7 +1,12 @@
 from tkinter import Label, Button, Toplevel, Entry, Frame
 
 from signup import signupFrame
+
 from production import Production
+
+from errors import McError
+
+import sqlite3
 
 class UserLogin(Toplevel):
 	def __init__(self, master):
@@ -10,13 +15,18 @@ class UserLogin(Toplevel):
 
 		self.frame = Frame(self.userlogin_master)
 
+		self.db=sqlite3.connect('mindclock.db')
+		self.cursor=self.db.cursor()
+
+		self.messages = McError()
+
 		self.userlabel = Label(self.userlogin_master, text="User ID")
 		self.username = Entry(self.userlogin_master)
 
 		self.userlabel.pack()
 		self.username.pack()
 
-		self.login_button = Button(self.userlogin_master, text="Start", command=self.production_open,width=7)
+		self.login_button = Button(self.userlogin_master, text="Start", command=self.login,width=7)
 		self.login_button.pack()
 
 		self.login_button = Button(self.userlogin_master, text="Register", command=self.signup,width=7)
@@ -41,14 +51,14 @@ class UserLogin(Toplevel):
 		self.signup = signupFrame(self.userlogin_master)
 	
 	def login(self,event=None):
-		# match username and password
-		if self.username.get() == "user" and self.password.get() == "user":
-			# print("Login success")
+
+		find_user = ('SELECT userid FROM users WHERE userid = ?')
+		self.cursor.execute(find_user,[(self.username.get())])
+		result = self.cursor.fetchall()
+		
+		if result:
 			self.userlogin_master.destroy()
 			# call dashboard window
-			dashboard = Dash_board(self.master)
-			# self.master.deiconify()
-			# print(self.username.get())
-			# print(self.password.get())
-	def production_open(self):
-		window = Production(self.master, x1=50, y1=50, x2=150, y2=150)
+			window = Production(self.master, x1=50, y1=50, x2=150, y2=150)
+		else:
+			self.messages.error("Error","Invalid User ID")

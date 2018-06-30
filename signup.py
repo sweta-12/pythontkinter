@@ -74,7 +74,7 @@ class signupFrame(Toplevel):
 
 
     def BMI(self, weight, height):
-        bmi=(int(weight))/(int(height)*int(height))
+        bmi=(float(weight))*10000/(float(height)*float(height))
 
         return bmi
    

@@ -2,10 +2,19 @@ from tkinter import Label, Button, Toplevel, Entry, Frame, Canvas
 
 from admindashboard import Dash_board
 
+from errors import McError
+
+import sqlite3
+
 class AdminLogin():
 	def __init__(self, master):
 		self.master = master
 		self.adminlogin_master = Toplevel(master)
+
+		self.db=sqlite3.connect('mindclock.db')
+		self.cursor=self.db.cursor()
+
+		self.messages = McError()
 
 		self.frame = Frame(self.adminlogin_master)
 		self.username = Label(self.adminlogin_master, text="Username")
@@ -35,11 +44,15 @@ class AdminLogin():
 
 	def login(self,event=None):
 		# match username and password
-		if self.username.get() == "admin" and self.password.get() == "admin":
-			# print("Login success")
+		find_user = ('SELECT username,password FROM admins WHERE username = ? and password = ?')
+		self.cursor.execute(find_user,[(self.username.get()),(self.password.get())])
+		result = self.cursor.fetchall()
+		if result:
 			self.adminlogin_master.destroy()
 			# call dashboard window
 			dashboard = Dash_board(self.master)
+		else:
+			self.messages.error("Error","Invalid Username or Password")
 			# self.master.deiconify()
 			# print(self.username.get())
 			# print(self.password.get())
