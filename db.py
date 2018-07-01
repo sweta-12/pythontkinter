@@ -39,11 +39,14 @@ class MindClockDb:
 			self.cursor.execute(sql)
 			self.db.commit()
 			return True
-		except : 
+		except sqlite3.IntegrityError: 
 			self.window.withdraw()
 			#message box showing the error
 			self.messages.error("Error","Values already exist")
 			self.window.deiconify()
+
+		except sqlite3.OperationalError as e:
+			print(e)
 
 	def update(self, sql):
 
@@ -67,8 +70,8 @@ class MindClockDb:
 		self.cursor.close()
 		self.db.close()
 
-if __name__ == "__main__":
-	dbObj = MindClockDb()
+# if __name__ == "__main__":
+# 	dbObj = MindClockDb()
 
 # dbObj.select("SELECT * FROM admins")
 	# row = dbObj.single_record()

@@ -39,7 +39,7 @@ class UserLogin(Toplevel):
 
 		self.userlogin_master.protocol("WM_DELETE_WINDOW",self.cancel)
 		self.userlogin_master.bind('<Return>', self.login)
-		self.userlogin_master.geometry('300x200')
+		self.userlogin_master.geometry('500x400')
 
 	def cancel(self):
 		self.userlogin_master.destroy()

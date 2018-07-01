@@ -1,6 +1,6 @@
 from tkinter import *
 
-from database.db import MindClockDb
+from db import MindClockDb
 from errors import McError
 
 class signupFrame(Toplevel):
@@ -11,10 +11,6 @@ class signupFrame(Toplevel):
         self.frame = Frame(self.signup_master)
         self.messages = McError()
         
-        self.entry_Height = Entry(self.signup_master)
-        self.entry_Weight = Entry(self.signup_master)
-        
-
         self.label_Username = Label(self.signup_master, text="ID",font="papyrus")
         self.label_Firstname = Label(self.signup_master, text="First Name",font="papyrus")
         self.label_Lastname = Label(self.signup_master, text="Last name",font="papyrus")
@@ -34,8 +30,10 @@ class signupFrame(Toplevel):
         self.entry_Lastname =Entry(self.signup_master)
         self.entry_Age = Entry(self.signup_master)
         self.gender = StringVar()
-        Radiobutton(self.signup_master,variable=self.gender,text="Female",value="Female").grid(row=4, sticky=W+W+E, column=1)
-        Radiobutton(self.signup_master,variable=self.gender,text="Male",value="Male").grid(row=4, sticky=W+S, column=3)
+        self.entry_Gender_male=Radiobutton(self.signup_master,variable=self.gender,text="Female",value="Female")
+        self.entry_Gender_female=Radiobutton(self.signup_master,variable=self.gender,text="Male",value="Male")
+        self.entry_Height = Entry(self.signup_master)
+        self.entry_Weight = Entry(self.signup_master)
         
         
        
@@ -60,7 +58,8 @@ class signupFrame(Toplevel):
         self.entry_Firstname.grid(row=1,column=1)
         self.entry_Lastname.grid(row=2,column=1)
         self.entry_Age.grid(row=3, column=1)
-        #self.entry_Gender.grid(row=4, column=1)
+        self.entry_Gender_male.grid(row=4, sticky=W+W+E, column=1)
+        self.entry_Gender_female.grid(row=4, sticky=W+S, column=3)
         self.entry_Height.grid(row=5, column=1)
         self.entry_Weight.grid(row=6, column=1)
         
