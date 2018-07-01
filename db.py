@@ -2,21 +2,21 @@ import sqlite3
 from errors import McError
 
 class MindClockDb:
-	def __init__(self,signup_master):
+	def __init__(self,obj_master):
 		self.db = sqlite3.connect("mindclock.db")
 		self.cursor = self.db.cursor()
 		self.cursor.row_factory = sqlite3.Row
 		# create tables
 		self.init_db()
 		self.messages = McError()
-		self.window = signup_master
+		self.window = obj_master
 
 	# init database structure
 	def init_db(self):
 
 		self.create_table("CREATE TABLE IF NOT EXISTS admins( id INTEGER PRIMARY KEY AUTOINCREMENT , username TEXT, password TEXT)")
-		self.create_table("CREATE TABLE IF NOT EXISTS users( id INTEGER PRIMARY KEY AUTOINCREMENT , firstname TEXT , lastname TEXT, age int, weight TEXT, height TEXT, gender TEXT, userid TEXT UNIQUE, bmi TEXT)")
-		self.create_table("CREATE TABLE IF NOT EXISTS test_types( id INTEGER  PRIMARY KEY AUTOINCREMENT , age_limit int, intervals int, replicate int)")
+		self.create_table("CREATE TABLE IF NOT EXISTS users( id INTEGER PRIMARY KEY AUTOINCREMENT , firstname TEXT , lastname TEXT, age int, weight TEXT, height TEXT, gender TEXT, userid TEXT, bmi TEXT)")
+		self.create_table("CREATE TABLE IF NOT EXISTS test_types( id INTEGER  PRIMARY KEY AUTOINCREMENT, intervals int, replicate int, type TEXT)")
 		self.create_table("CREATE TABLE IF NOT EXISTS operations( id INTEGER PRIMARY KEY AUTOINCREMENT , user_id int, replicate int, production_time int, reproduction_time int, early_time int, delay_time, type char)")
 
 		# self.create_admin()

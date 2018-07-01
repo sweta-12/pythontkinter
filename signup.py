@@ -47,7 +47,6 @@ class signupFrame(Toplevel):
         self.label_Lastname.grid(row=2,sticky=E)
         self.label_Age.grid(row=3, sticky=E)
         self.label_Gender.grid(row=4, sticky=E)
-        
         self.label_Height.grid(row=5, sticky=E)
         self.label_Weight.grid(row=6, sticky=E)
         #self.label_BMI.grid(row=5, sticky=E)
