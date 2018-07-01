@@ -23,19 +23,24 @@ class Dash_board(Toplevel):
 		tab_control.add(tab1, text='TESTCASE')
 		tab_control.add(tab2, text='RECORD')
 		
-
-		lbl1=Label(tab1, text= 'AGE',anchor=CENTER, justify=CENTER, fg="black", padx=5, pady=5)
+		lbl1=Label(tab1, text= 'AGE',anchor=CENTER,font="papyrus", justify=CENTER, fg="black", padx=5, pady=5)
 		lbl1.grid(column=0, row=0)
 
-		lbl1=Label(tab1, text= 'production interval',anchor=CENTER, justify=CENTER, fg="black", padx=5, pady=5)
-		lbl1.grid(column=0, row=1)
-		lbl1=Label(tab1, text= ' P replication',anchor=CENTER, justify=CENTER, fg="black", padx=5, pady=5)
-		lbl1.grid(column=0, row=2)
-		lbl1=Label(tab1, text= 'reproduction interval',anchor=CENTER, justify=CENTER, fg="black", padx=5, pady=5)
-		lbl1.grid(column=0, row=3)
-		lbl1=Label(tab1, text= 'R replication',anchor=CENTER, justify=CENTER, fg="black", padx=5, pady=5)
-		lbl1.grid(column=0, row=4)
+		variable = StringVar()
+		variable.set("None") # default value
 
+		OptionMenu(self.dashboard_master, variable,"15-25", "26-35", "36-45").grid(row=2,columnspan=2)
+		
+
+		lbl1=Label(tab1, text= 'production interval',font="papyrus",anchor=CENTER, justify=CENTER, fg="black", padx=5, pady=5)
+		lbl1.grid(column=0, row=1)
+		lbl1=Label(tab1, text= ' P replication',font="papyrus",anchor=CENTER, justify=CENTER, fg="black", padx=5, pady=5)
+		lbl1.grid(column=0, row=2)
+		lbl1=Label(tab1, text= 'reproduction interval',font="papyrus",anchor=CENTER, justify=CENTER, fg="black", padx=5, pady=5)
+		lbl1.grid(column=0, row=3)
+		lbl1=Label(tab1, text= 'R replication',font="papyrus",anchor=CENTER, justify=CENTER, fg="black", padx=5, pady=5)
+		lbl1.grid(column=0, row=4)
+		
 		e1 = Entry(tab1)
 		e2 = Entry(tab1)
 		e3 = Entry(tab1)
@@ -47,7 +52,7 @@ class Dash_board(Toplevel):
 		e4.grid(row=4, column=1)
 
 
-		lbl2 = Label(tab2, text= 'label2',padx=5, pady=5)
+		lbl2 = Label(tab2, text= 'Click here to generate Report',padx=5, pady=5)
 		lbl2.grid(column=0, row=0)
 		tab_control.pack(expand=1, fill='both')
 
