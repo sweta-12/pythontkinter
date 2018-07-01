@@ -14,6 +14,7 @@ class UserLogin(Toplevel):
 		self.userlogin_master = Toplevel(master)
 		self.userlogin_master.title("User")
 		self.frame = Frame(self.userlogin_master)
+		self.messages = McError()
 
 		self.db=sqlite3.connect("mindclock.db")
 		self.cursor=self.db.cursor()
@@ -53,11 +54,19 @@ class UserLogin(Toplevel):
 
 		find_user = ('SELECT userid FROM users WHERE userid = ?')
 		self.cursor.execute(find_user,[(self.username.get())])
+		value = self.username.get()
 		result = self.cursor.fetchone()
 		
 		if result:
 			self.userlogin_master.destroy()
 			# call dashboard window
 			window = Production(self.master, x1=50, y1=50, x2=150, y2=150)
-		else:
+		elif result!=value and value!="":
+			self.userlogin_master.withdraw()
 			self.messages.error("Error","Invalid User ID")
+			self.username.delete(0,'end')
+			self.userlogin_master.deiconify()
+		else:
+			self.userlogin_master.withdraw()
+			self.messages.error("Error","Fields cannot be empty")
+			self.userlogin_master.deiconify()
