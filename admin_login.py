@@ -46,7 +46,7 @@ class AdminLogin():
 		# match username and password
 		find_user = ('SELECT username,password FROM admins WHERE username = ? and password = ?')
 		self.cursor.execute(find_user,[(self.username.get()),(self.password.get())])
-		result = self.cursor.fetchall()
+		result = self.cursor.fetchone()
 		if result:
 			self.adminlogin_master.destroy()
 			# call dashboard window

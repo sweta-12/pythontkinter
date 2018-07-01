@@ -12,7 +12,7 @@ class UserLogin(Toplevel):
 	def __init__(self, master):
 		self.master = master
 		self.userlogin_master = Toplevel(master)
-
+		self.userlogin_master.title("User")
 		self.frame = Frame(self.userlogin_master)
 
 		self.db=sqlite3.connect('mindclock.db')
@@ -40,7 +40,7 @@ class UserLogin(Toplevel):
 
 		self.userlogin_master.protocol("WM_DELETE_WINDOW",self.cancel)
 		self.userlogin_master.bind('<Return>', self.login)
-		self.userlogin_master.geometry('500x400')
+		self.userlogin_master.geometry('300x200')
 
 	def cancel(self):
 		self.userlogin_master.destroy()
