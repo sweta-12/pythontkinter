@@ -15,6 +15,9 @@ class UserLogin(Toplevel):
 		self.userlogin_master.title("User")
 		self.frame = Frame(self.userlogin_master)
 
+		self.db=sqlite3.connect("mindclock.db")
+		self.cursor=self.db.cursor()
+
 		self.userlabel = Label(self.userlogin_master, text="User ID",font="papyrus")
 		self.username = Entry(self.userlogin_master)
 
@@ -50,7 +53,7 @@ class UserLogin(Toplevel):
 
 		find_user = ('SELECT userid FROM users WHERE userid = ?')
 		self.cursor.execute(find_user,[(self.username.get())])
-		result = self.cursor.fetchall()
+		result = self.cursor.fetchone()
 		
 		if result:
 			self.userlogin_master.destroy()

@@ -33,9 +33,9 @@ class signupFrame(Toplevel):
         self.entry_Firstname = Entry(self.signup_master)
         self.entry_Lastname =Entry(self.signup_master)
         self.entry_Age = Entry(self.signup_master)
-        v = IntVar()
-        Radiobutton(self.signup_master,variable=v,text="Female",value=1).grid(row=4, sticky=W+W+E, column=1)
-        Radiobutton(self.signup_master,variable=v,text="Male",value=2).grid(row=4, sticky=W+S, column=3)
+        self.gender = StringVar()
+        Radiobutton(self.signup_master,variable=self.gender,text="Female",value="Female").grid(row=4, sticky=W+W+E, column=1)
+        Radiobutton(self.signup_master,variable=self.gender,text="Male",value="Male").grid(row=4, sticky=W+S, column=3)
         
         
        
@@ -99,7 +99,7 @@ class signupFrame(Toplevel):
         firstname=self.entry_Firstname.get()
         lastname=self.entry_Lastname.get()
         age = self.entry_Age.get()
-        gender = self.entry_Gender.get()
+        gender = self.gender.get()
         height = self.entry_Height.get()
         weight = self.entry_Weight.get()
 
