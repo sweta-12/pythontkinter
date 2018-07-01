@@ -10,27 +10,35 @@ class signupFrame(Toplevel):
         self.signup_master = Toplevel(master)
         self.frame = Frame(self.signup_master)
         self.messages = McError()
+        
+        self.entry_Height = Entry(self.signup_master)
+        self.entry_Weight = Entry(self.signup_master)
+        
 
-        self.label_Username = Label(self.signup_master, text="ID")
-        self.label_Firstname = Label(self.signup_master, text="First Name")
-        self.label_Lastname = Label(self.signup_master, text="Last name")
-        self.label_Age = Label(self.signup_master, text="Age")
-        self.label_Gender = Label(self.signup_master, text="Gender")
-        self.label_Height = Label(self.signup_master, text="Height(cm)")
-        self.label_Weight = Label(self.signup_master, text="Weight")
+        self.label_Username = Label(self.signup_master, text="ID",font="papyrus")
+        self.label_Firstname = Label(self.signup_master, text="First Name",font="papyrus")
+        self.label_Lastname = Label(self.signup_master, text="Last name",font="papyrus")
+        self.label_Age = Label(self.signup_master, text="Age",font="papyrus")
+        self.label_Gender = Label(self.signup_master, text="Gender",font=("papyrus",12))
+
+        self.label_Height = Label(self.signup_master, text="Height(cm)",font="papyrus")
+        self.label_Weight = Label(self.signup_master, text="Weight",font="papyrus")
         
  
         #self.label_BMI = Label(self, text="BMI")
-        self.label_password = Label(self.signup_master, text="password")
+        self.label_password = Label(self.signup_master, text="password",font="papyrus")
         #self.label_confirm password = Label(self, text="confirm password")
 
         self.entry_Username = Entry(self.signup_master)
         self.entry_Firstname = Entry(self.signup_master)
         self.entry_Lastname =Entry(self.signup_master)
         self.entry_Age = Entry(self.signup_master)
-        self.entry_Gender = Entry(self.signup_master)
-        self.entry_Height = Entry(self.signup_master)
-        self.entry_Weight = Entry(self.signup_master)
+        v = IntVar()
+        Radiobutton(self.signup_master,variable=v,text="Female",value=1).grid(row=4, sticky=W+W+E, column=1)
+        Radiobutton(self.signup_master,variable=v,text="Male",value=2).grid(row=4, sticky=W+S, column=3)
+        
+        
+       
         #self.entry_BMI = Entry(self)
 
         # self.entry_password = Entry(self, show="*")
@@ -41,6 +49,7 @@ class signupFrame(Toplevel):
         self.label_Lastname.grid(row=2,sticky=E)
         self.label_Age.grid(row=3, sticky=E)
         self.label_Gender.grid(row=4, sticky=E)
+        
         self.label_Height.grid(row=5, sticky=E)
         self.label_Weight.grid(row=6, sticky=E)
         #self.label_BMI.grid(row=5, sticky=E)
@@ -51,26 +60,29 @@ class signupFrame(Toplevel):
         self.entry_Firstname.grid(row=1,column=1)
         self.entry_Lastname.grid(row=2,column=1)
         self.entry_Age.grid(row=3, column=1)
-        self.entry_Gender.grid(row=4, column=1)
+        #self.entry_Gender.grid(row=4, column=1)
         self.entry_Height.grid(row=5, column=1)
         self.entry_Weight.grid(row=6, column=1)
+        
         #self.entry_BMI.grid(row=5, column=1)
         # self.entry_password.grid(row=6, column=1)
         #self.entry_confirm password.grid(row=7, column=1)
 
         #self.checkbox = Checkbutton(self, text="welcome to mindclock")
         #self.checkbox.grid(columnspan=2)
+        
 
 
-        self.signbtn = Button(self.signup_master, text="signup", command=self._signup_btn_clicked)
+        self.signbtn = Button(self.signup_master, text="signup",font="papyrus", command=self._signup_btn_clicked)
         self.signbtn.grid(columnspan=2)
 
         #self.login_button = Button(self.master, text="login", command=self.login_window)
         #self.login_button.pack()
-
+        
         self.signup_master.geometry('500x400')
         # self.pack()
         self.signup_master.protocol("WM_DELETE_WINDOW",self.cancel)
+        
 
 
     def BMI(self, weight, height):

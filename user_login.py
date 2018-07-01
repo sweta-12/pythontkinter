@@ -15,24 +15,20 @@ class UserLogin(Toplevel):
 		self.userlogin_master.title("User")
 		self.frame = Frame(self.userlogin_master)
 
-		self.db=sqlite3.connect('mindclock.db')
-		self.cursor=self.db.cursor()
-
-		self.messages = McError()
-
-		self.userlabel = Label(self.userlogin_master, text="User ID")
+		self.userlabel = Label(self.userlogin_master, text="User ID",font="papyrus")
 		self.username = Entry(self.userlogin_master)
 
 		self.userlabel.pack()
 		self.username.pack()
 
-		self.login_button = Button(self.userlogin_master, text="Start", command=self.login,width=7)
+
+		self.login_button = Button(self.userlogin_master,font="papyrus", text="Start", command=self.login,width=7)
 		self.login_button.pack()
 
-		self.login_button = Button(self.userlogin_master, text="Register", command=self.signup,width=7)
+		self.login_button = Button(self.userlogin_master,font="papyrus", text="Register", command=self.signup,width=7)
 		self.login_button.pack() 
 
-		self.login_button = Button(self.userlogin_master, text="Cancel", command=self.cancel,width=7)
+		self.login_button = Button(self.userlogin_master,font="papyrus", text="Cancel", command=self.cancel,width=7)
 		self.login_button.pack() 
 
 
