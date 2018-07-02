@@ -57,7 +57,7 @@ class Dash_board(Toplevel):
 		sql = "INSERT INTO test_types(type, replicate, intervals) VALUES('{}','{}','{}')".format(type, Replication, Interval)
 		sql1 = "DELETE FROM test_types WHERE type=('{}')".format(type)
 
-		if((type!="Production" or type!="Reproduction") or Replication=="" or Interval==""):
+		if((type!="Production" and type!="Reproduction") or Replication=="" or Interval==""):
 			self.dashboard_master.withdraw()
 			self.messages.error("Error", "Fields Empty")
 			self.dashboard_master.deiconify()
