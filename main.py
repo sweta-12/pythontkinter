@@ -13,24 +13,24 @@ class MainWindow(Frame):
 	def init_window(self):
 
 		self.frame = Frame(self.master)
-		img=PhotoImage(file="assets/ad.gif")
+		img=PhotoImage(file="assets/adm.gif")
 		img1=PhotoImage(file="assets/user.gif")
 
 		self.label = Label(self.master, text="Welcome to the Mind Clock Game",font=("papyrus",25))
 
-		self.label.config(bg='#34af23')
+		self.label.config(bg='#D3D3D3')
 		#Frame.geometry('350x200')
 
 		self.label.pack()
 
 		self.admin_button = Button(self.master, image=img, text= "admin", command=self.admin_window)
 		self.admin_button.image=img
-		self.admin_button.config(bg='#34af23')
+		self.admin_button.config(bg='#D3D3D3')
 		self.admin_button.pack(side=LEFT)
 
 		self.user_button = Button(self.master, image=img1, text= "user", command=self.user_window)
 		self.user_button.image=img1
-		self.user_button.config(bg='#34af23')
+		self.user_button.config(bg='#D3D3D3')
 		self.user_button.pack(side=RIGHT)
 
 		self.frame.pack()
@@ -46,7 +46,7 @@ class MainWindow(Frame):
 if __name__ == "__main__":
 	root = Tk()
 	root.geometry('500x400')
-	root.config(bg='#34af23')
+	root.config(bg='#D3D3D3')
 	root.title("Mindclock")
 	main_window = MainWindow(root)
 	root.mainloop()

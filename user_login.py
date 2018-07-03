@@ -1,7 +1,7 @@
 from tkinter import Label, Button, Toplevel, Entry, Frame
 
 from signup import signupFrame
-from menuoption import Menu
+from testwindow import TestWindow
 
 from errors import McError
 
@@ -60,7 +60,7 @@ class UserLogin(Toplevel):
 			self.userlogin_master.destroy()
 			# call dashboard window
 			#window = Production(self.master, x1=100, y1=100)
-			self.window = Menu(self.master)
+			self.userlogin_master = TestWindow(self.master)
 		elif result!=value and value!="":
 			self.userlogin_master.withdraw()
 			self.messages.error("Error","Invalid User ID")
