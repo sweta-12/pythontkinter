@@ -13,7 +13,7 @@ class MainWindow(Frame):
 	def init_window(self):
 
 		self.frame = Frame(self.master)
-		img=PhotoImage(file="assets/admin.gif")
+		img=PhotoImage(file="assets/ad.gif")
 		img1=PhotoImage(file="assets/user.gif")
 
 		self.label = Label(self.master, text="Welcome to the Mind Clock Game",font=("papyrus",25))
