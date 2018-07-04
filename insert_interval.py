@@ -14,17 +14,33 @@ class insert_interval(Toplevel):
 
 		self.messages = McError()
 
-		label_Interval = Label(self.interval_master, text="Interval ")
+		self.interval_no=int(interval_no)
+		self.type=type
 
-		entry_Interval =Entry(self.interval_master)
+		if(self.interval_no == 0):
+			self.interval_master.destroy()
+			self.master.deiconify()
+		else:
 
-		label_Interval.grid(row=0,sticky=E)
+			label_Interval = Label(self.interval_master, text="Interval ")
 
-		entry_Interval.grid(row=0,column=1)
+			self.entry_Interval =Entry(self.interval_master)
 
-		next_button = Button(self.interval_master, text="Next", command=self.insert(type, interval_no, entry_Interval.get(),self.interval_master))
-		next_button.grid(columnspan=2)
+			label_Interval.grid(row=0,sticky=E)
 
+			self.entry_Interval.grid(row=0,column=1)
+
+			if(self.interval_no==1):
+				next_button = Button(self.interval_master, text="Finish", command=self.call)
+			else:
+				next_button = Button(self.interval_master, text="Next", command=self.call)
+			
+			next_button.grid(columnspan=2)
+
+			self.interval_master.mainloop()
+
+	def call(self):
+		self.insert(self.type, self.interval_no, self.entry_Interval.get() ,self.interval_master)
 
 	def insert(self, type, interval_no, interval_time, interval_master):
 		
@@ -43,3 +59,6 @@ class insert_interval(Toplevel):
 			interval_master.withdraw()
 			self.messages.error("Error", "Something went wrong!")
 			interval_master.deiconify()
+		self.interval_no=self.interval_no-1
+		self.interval_master.destroy()
+		self.__init__(self.master, self.interval_no, self.type)
