@@ -6,6 +6,7 @@ from db import MindClockDb
 
 from errors import McError
 
+from insert_interval import insert_interval
 
 class Dash_board(Toplevel):
 
@@ -36,7 +37,7 @@ class Dash_board(Toplevel):
 		self.entry_Replication.grid(row=1, column=1)
 		self.entry_Intervals.grid(row=2,column=1)
 
-		self.save_button = Button(self.dashboard_master, text="Save", command=self.save)
+		self.save_button = Button(self.dashboard_master, text="Next", command=self.save)
 		self.save_button.grid(columnspan=2)
 
 		self.logout_button = Button(self.dashboard_master, text="Logout", command=self.logout)
@@ -56,13 +57,21 @@ class Dash_board(Toplevel):
 
 		sql = "INSERT INTO test_types(type, replicate, intervals) VALUES('{}','{}','{}')".format(type, Replication, Interval)
 		sql1 = "DELETE FROM test_types WHERE type=('{}')".format(type)
+		if(type == "Production"):
+			sql2 = "DELETE FROM  production_interval"
+		elif(type == "Reproduction"):
+			sql2 = "DELETE FROM  reproduction_interval"
 
 		if((type!="Production" and type!="Reproduction") or Replication=="" or Interval==""):
 			self.dashboard_master.withdraw()
 			self.messages.error("Error", "Fields Empty")
 			self.dashboard_master.deiconify()
 		elif(db.delete(sql1) & db.insert(sql)):
-			self.messages.success("Success", "Saved Successfully!")
+			# self.messages.success("Success", "Saved Successfully!")
+			self.dashboard_master.destroy()
+			if(db.delete(sql2)):
+				insert_interval(self.dashboard_master ,Interval , type)
+
 		else:
 			self.dashboard_master.withdraw()
 			self.messages.error("Error", "Something went wrong!")

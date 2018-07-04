@@ -14,10 +14,12 @@ class MindClockDb:
 	# init database structure
 	def init_db(self):
 
-		self.create_table("CREATE TABLE IF NOT EXISTS admins( id INTEGER PRIMARY KEY AUTOINCREMENT , username TEXT , password TEXT )")
-		self.insert("INSERT INTO admins(username, password) VALUES('admin','admin')")
+		self.create_table("CREATE TABLE IF NOT EXISTS admins( id INTEGER PRIMARY KEY AUTOINCREMENT , username TEXT UNIQUE, password TEXT )")
+		self.insert("INSERT OR IGNORE INTO admins(username, password) VALUES('admin','admin')")
 		self.create_table("CREATE TABLE IF NOT EXISTS users( id INTEGER PRIMARY KEY AUTOINCREMENT , firstname TEXT  , lastname TEXT , age int , weight TEXT , height TEXT , gender TEXT , userid TEXT , bmi TEXT)")
 		self.create_table("CREATE TABLE IF NOT EXISTS test_types( id INTEGER  PRIMARY KEY AUTOINCREMENT , intervals int , replicate int , type TEXT)")
+		self.create_table("CREATE TABLE IF NOT EXISTS production_interval( id INTEGER  PRIMARY KEY AUTOINCREMENT , interval_no int , interval int)")
+		self.create_table("CREATE TABLE IF NOT EXISTS reproduction_interval( id INTEGER  PRIMARY KEY AUTOINCREMENT , interval_no int , interval int)")
 		self.create_table("CREATE TABLE IF NOT EXISTS operations( id INTEGER PRIMARY KEY AUTOINCREMENT , user_id int , replicate int , production_time int , reproduction_time int , early_time int , delay_time int , type char )")
 
 		# self.create_admin()
