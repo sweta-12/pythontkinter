@@ -70,7 +70,7 @@ class Dash_board(Toplevel):
 			# self.messages.success("Success", "Saved Successfully!")
 			self.dashboard_master.destroy()
 			if(db.delete(sql2)):
-				insert_interval(self.dashboard_master ,Interval , type)
+				insert_interval(self.master ,Interval , type)
 
 		else:
 			self.dashboard_master.withdraw()
