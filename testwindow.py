@@ -34,7 +34,7 @@ class TestWindow(Toplevel):
 
 	def production_window(self):
 		self.master.withdraw()
-		self.window = Production(self.master, x1=100, y1=100)
+		self.window = Production(self.master)
 		#self.testcase_master.withdraw()
 		
 	def reproduction_window(self):
