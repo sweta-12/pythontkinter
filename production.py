@@ -1,5 +1,5 @@
 from tkinter import *
-from time import *
+from time import sleep
 
 
 from db import MindClockDb
@@ -10,8 +10,9 @@ import sqlite3
 
 class Production(Toplevel):
 	def __init__(self,master):
-		self.testcase_master = Toplevel(master)
 		self.master = master
+		self.testcase_master = Toplevel(master)
+		
 
 
 		#self.x1 = params['x1']
@@ -38,50 +39,43 @@ class Production(Toplevel):
 		self.canvas = Canvas(self.testcase_master, width = 300, height = 200)
 
 		#self.canvas.create_oval(self.x1, self.y1, self.x2, self.y2, fill="green")
-		#def run_prg(self):
-		for i in range(1,self.replicate):
+		#
+
+		#for i in range(1,self.replicate+1):
+			
+			#for j in range(1,self.intervals+1):
+		for i in range(1,self.replicate+1):
 			for j in range(1,self.intervals+1):
 				sql=("SELECT interval FROM production_interval WHERE interval_no='{}'").format(j)
 				self.cursor.execute(sql)
-				interval=self.cursor.fetchone()
-				interval=int(interval[0])
-				print("interval : ",interval)
-				self.canvas.create_oval(200,200,70,70,fill='red')
-				s = str(interval)
-		#self.draw(event)
+				self.interval=self.cursor.fetchone()
+				self.interval=int(self.interval[0])
+				print("interval : ",self.interval)
+				self.canvas.create_oval(200,200,70,70,fill='#6666ff')
+				s = str(self.interval)
 				self.canvas.create_text(134,134,text=s,fill="white",font=("tahoma",60))
 				self.canvas.pack()
 				self.testcase_master.bind("<space>", self.hide_ball)
 
-				#print(j)
-				
-
-
-				
-				
-
 		self.testcase_master.protocol("WM_DELETE_WINDOW",self.cancel)
 
-	
 
-	
-	
-
-	def flash(self):
-		self.lbl = Label(self.testcase_master,text="Wait")
-		self.lbl.pack()
+	#def flash(self):
+	#	self.lbl = Label(self.testcase_master,text="Wait")
+	#	self.lbl.pack()
         #bg = self.cget('background')
         #fg = self.cget('foreground')
         #self.configure(background=fg,foreground=bg)
-		self.lbl.after(3000,self.lbldes) 
+	#	self.lbl.after(3000,self.lbldes) 
 	def lbldes(self):
 		self.lbl.destroy()
-		
-		
+
+
 	def hide_ball(self,event=None):
 		self.canvas.destroy()
-		
-		
+
+
+
 
 	def cancel(self):
 		self.testcase_master.destroy()
