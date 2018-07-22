@@ -17,6 +17,11 @@ class Dash_board(Toplevel):
 		self.dashboard_master.title("DASHBOARD")
 
 		self.messages = McError()
+
+		self.menubar = Menu(self.dashboard_master)
+		self.filemenu = Menu(self.menubar, tearoff=0)
+		self.filemenu.add_command(label="New", command=self.generate)
+		self.menubar.add_cascade(label="File", menu=self.filemenu)
  		
 		self.label_Type = Label(self.dashboard_master, text="Test case type")
 		self.label_Replication = Label(self.dashboard_master, text="Number of Replications")
