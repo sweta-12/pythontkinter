@@ -16,9 +16,6 @@ cursor.execute("create table test_types( id int, age_limit int, intervals int, r
 cursor.execute("drop table if exists admins")
 cursor.execute("create table admins( id int, username text, password text)")
 
-INSERT IGNORE INTO admins(primaryKey, username text, password text)
-VALUES('id',admin,password)
-
 #creating table for operations
 cursor.execute("drop table if exists operations")
 cursor.execute("create table operations( id int, user_id int, replicate int, production_time int, reproduction_time int, early_time int, delay_time, type char)")
