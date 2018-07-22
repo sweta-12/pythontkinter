@@ -8,7 +8,7 @@ from errors import McError
 
 from insert_interval import insert_interval
 
-import xlswriter
+import xlsxwriter
 
 class Dash_board(Toplevel):
 
@@ -22,8 +22,9 @@ class Dash_board(Toplevel):
 
 		self.menubar = Menu(self.dashboard_master)
 		self.filemenu = Menu(self.menubar, tearoff=0)
-		self.filemenu.add_command(label="New", command=self.generate)
+		self.filemenu.add_command(label="Generate Report", command=self.generate)
 		self.menubar.add_cascade(label="File", menu=self.filemenu)
+
  		
 		self.label_Type = Label(self.dashboard_master, text="Test case type")
 		self.label_Replication = Label(self.dashboard_master, text="Number of Replications")
@@ -51,6 +52,7 @@ class Dash_board(Toplevel):
 		self.logout_button.grid(columnspan=2)
 
 		self.dashboard_master.protocol("WM_DELETE_WINDOW",self.logout)
+		self.dashboard_master.config(menu=self.menubar)
 
 	def logout(self):
 		self.master.deiconify()
@@ -83,10 +85,10 @@ class Dash_board(Toplevel):
 			self.dashboard_master.withdraw()
 			self.messages.error("Error", "Something went wrong!")
 			self.dashboard_master.deiconify()
-	def generate():
-		report = xlswriter.Workbook("Report.xlsx")
-		reportsheet = Workbook.add_reportsheet()
+	def generate(self):
+		report = xlsxwriter.Workbook("Generated Report/Report.xlsx")
+		reportsheet = report.add_worksheet()
 		#Widened the column
 		reportsheet.set_column('A:A', 20)
-		worksheet.write('A1', 'Hello')
-		Workbook.close()
+		reportsheet.write('A1', 'Hello')
+		report.close()
