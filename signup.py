@@ -3,7 +3,7 @@ from tkinter import *
 from db import MindClockDb
 from errors import McError
 
-class signupFrame(Toplevel):
+class signupFrame():
     def __init__(self, master):
         
         self.master = master

@@ -8,6 +8,8 @@ from errors import McError
 
 from insert_interval import insert_interval
 
+import xlswriter
+
 class Dash_board(Toplevel):
 
 	def __init__(self,master=None):
@@ -76,3 +78,10 @@ class Dash_board(Toplevel):
 			self.dashboard_master.withdraw()
 			self.messages.error("Error", "Something went wrong!")
 			self.dashboard_master.deiconify()
+	def generate():
+		report = xlswriter.Workbook("Report.xlsx")
+		reportsheet = Workbook.add_reportsheet()
+		#Widened the column
+		reportsheet.set_column('A:A', 20)
+		worksheet.write('A1', 'Hello')
+		Workbook.close()

@@ -5,7 +5,7 @@ from db import MindClockDb
 from errors import McError
 
 
-class insert_interval(Toplevel):
+class insert_interval():
 
 	def __init__(self, master, interval_no, type):
 

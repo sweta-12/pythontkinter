@@ -1,11 +1,11 @@
 from tkinter import *
 from production import Production
 from reproduction import Reproduction
+import sys
 
-
-class TestWindow(Toplevel):
+class TestWindow():
 	def __init__(self, master=None):
-		Frame.__init__(self,master)
+		# Frame.__init__(self,master)
 		self.master = Toplevel(master)
 		#self.option_menu = Toplevel(master)
 		#self.frame = Frame(self.option_menu)
@@ -26,9 +26,10 @@ class TestWindow(Toplevel):
 		self.reproduction_button.image=img1
 		self.reproduction_button.config(bg='#34af23')
 		self.reproduction_button.pack(padx=45, pady=60,side=RIGHT)
-
 	
 		self.frame.pack()
+
+		self.master.protocol("WM_DELETE_WINDOW",self.exit)
 
 		#self.option_menu.geometry('500x400')
 
@@ -41,6 +42,7 @@ class TestWindow(Toplevel):
 		self.master.withdraw()
 		self.window = Reproduction(self.master)
 		#self.master.deiconify()
-		mainloop()
+	def exit(self):
+		sys.exit
 
 	
