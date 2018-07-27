@@ -39,9 +39,8 @@ class TestWindow():
 		#self.testcase_master.withdraw()
 		
 	def reproduction_window(self):
-		self.master.withdraw()
 		self.window = Reproduction(self.master)
-		#self.master.deiconify()
-		mainloop()
+		self.test_master.destroy()
+		
 
 	
