@@ -1,11 +1,22 @@
 from tkinter import *
 import datetime
 import time
+from db import MindClockDb
+from errors import McError
 class Reproduction():
-	def __init__(self,master=None):
+	def __init__(self,master , userdata):
 		self.master = master
 		self.testcase_master = Toplevel(master)
 		self.testcase_master.protocol("WM_DELETE_WINDOW", self.mainwin)
+		self.userdata=userdata
+
+		self.db = MindClockDb(self.testcase_master)
+
+		self.messages = McError()
+
+		sql1 = "DELETE FROM operations WHERE type=('{}')".format("Reproduction")
+		if(self.db.delete(sql1)==False):
+			self.messages.error("Error", "Something went wrong!")
 		
 		self.canvas1 = Canvas(self.testcase_master, width = 350, height = 300)
 		self.canvas1.pack()
@@ -45,6 +56,10 @@ class Reproduction():
 		print("end time",self.end)
 		self.getdiff= self.end-self.start
 		print("Difference",self.getdiff)
+		sql="INSERT INTO operations(user_id, replicate, production_time, reproduction_time, result_time, type) VALUES('{}','{}','{}','{}','{}','{}')".format(self.userdata,1,None,3,self.getdiff,"Reproduction")
+
+		if(self.db.insert(sql)==False):
+			self.messages.error("Error", "Something went wrong!")
 
 	def clear(self):
 		self.canvas1.destroy()

@@ -40,7 +40,7 @@ class TestWindow():
 		#self.testcase_master.withdraw()
 		
 	def reproduction_window(self):
-		self.window = Reproduction(self.master)
+		self.window = Reproduction(self.master, self.userdata)
 		self.test_master.destroy()
 		
 
