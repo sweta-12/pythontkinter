@@ -1,5 +1,5 @@
 from tkinter import Toplevel, Label
-
+from errors import McError
 import sys
 import time
 from datetime import datetime
@@ -18,7 +18,13 @@ class Production:
 		self.production_master.title("Production")
 		self.production_master.focus_set()
 
-		self.db = MindClockDb()
+		self.messages = McError()
+
+		self.db = MindClockDb(self.production_master)
+		sql1 = "DELETE FROM operations WHERE type=('{}')".format("Production")
+		if(self.db.delete(sql1)==False):
+			self.messages.error("Error", "Something went wrong!")
+
 		# self.production_master.attributes('-fullscreen', True)
 		self.init_production()
 
@@ -28,6 +34,7 @@ class Production:
 
 		self.production_timer = Label(self.production_master, text=self.time[self.productioncounter], **set)
 		self.production_timer.pack(padx=200, pady=320)
+		self.time1=time.time()
 		self.production_master.bind('<space>', self.get_production_event)
 
 
@@ -35,14 +42,25 @@ class Production:
 		# self.time = []
 		# self.event = []
 		# self.data = self.db.select("SELECT ")
-		data = self.db.select("SELECT id, intervals, replicate, type FROM test_types WHERE type='P'")
+		data = self.db.select("SELECT id, intervals, replicate, type FROM test_types WHERE type='Production'")
 		data = data.fetchone()
 		intervals = dict(data)
 		self.time = intervals['intervals'].split('-')
 		self.replicate = intervals['replicate']
 
 	def get_production_event(self, event):
-		time.sleep(2)
+		time.sleep(1)
+
+		self.time1=time.time()-self.time1
+		print(self.time1)
+
+		sql="INSERT INTO operations(user_id, replicate, production_time, reproduction_time, result_time, type) VALUES('{}','{}','{}','{}','{}','{}')".format(self.userdata,self.replicationcounter,self.time[self.productioncounter],None,self.time1,"Production")
+
+		if(self.db.insert(sql)==False):
+			self.messages.error("Error", "Something went wrong!")
+
+
+		self.time1=time.time()
 
 		self.productioncounter += 1
 		print(self.replicationcounter)

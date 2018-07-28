@@ -52,7 +52,7 @@ class UserLogin(Toplevel):
 	def login(self,event=None):
 
 		find_user = ('SELECT userid FROM users WHERE userid = ?')
-		self.cursor.execute(find_user,[(self.username.get())])
+		self.cursor.execute(find_user,[self.username.get()])
 		value = self.username.get()
 		result = self.cursor.fetchone()
 		
@@ -60,7 +60,7 @@ class UserLogin(Toplevel):
 			self.userlogin_master.destroy()
 			# call dashboard window
 			#window = Production(self.master, x1=100, y1=100)
-			self.userlogin_master = TestWindow(self.master)
+			self.userlogin_master = TestWindow(self.master,params=value)
 		elif result!=value and value!="":
 			self.userlogin_master.withdraw()
 			self.messages.error("Error","Invalid User ID")

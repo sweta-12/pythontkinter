@@ -18,11 +18,9 @@ class MindClockDb:
 		self.insert("INSERT OR IGNORE INTO admins(username, password) VALUES('admin','admin')")
 		self.create_table("CREATE TABLE IF NOT EXISTS users( id INTEGER PRIMARY KEY AUTOINCREMENT , firstname TEXT  , lastname TEXT , age int , weight TEXT , height TEXT , gender TEXT , userid TEXT , bmi TEXT)")
 		self.create_table("CREATE TABLE IF NOT EXISTS test_types( id INTEGER  PRIMARY KEY AUTOINCREMENT , intervals TEXT , replicate int , type TEXT)")
-		self.insert("INSERT OR IGNORE INTO test_types(intervals,replicate, type) VALUES('3-4-5-6',2, 'P')")
-		self.insert("INSERT OR IGNORE INTO test_types(intervals,replicate, type) VALUES('3-4-5-6',2, 'R')")
-		self.create_table("CREATE TABLE IF NOT EXISTS production_interval( id INTEGER  PRIMARY KEY AUTOINCREMENT , interval_no int , interval int)")
-		self.create_table("CREATE TABLE IF NOT EXISTS reproduction_interval( id INTEGER  PRIMARY KEY AUTOINCREMENT , interval_no int , interval int)")
-		self.create_table("CREATE TABLE IF NOT EXISTS operations( id INTEGER PRIMARY KEY AUTOINCREMENT , user_id int , replicate int , production_time int , reproduction_time int , early_time int , delay_time int , type char )")
+		# self.insert("INSERT OR IGNORE INTO test_types(intervals,replicate, type) VALUES('3-4-5-6',2, 'P')")
+		# self.insert("INSERT OR IGNORE INTO test_types(intervals,replicate, type) VALUES('3-4-5-6',2, 'R')")
+		self.create_table("CREATE TABLE IF NOT EXISTS operations( id INTEGER PRIMARY KEY AUTOINCREMENT , user_id int , replicate int , production_time real , reproduction_time real , result_time real , type char )")
 
 		# self.create_admin()
 

@@ -8,6 +8,7 @@ class TestWindow():
 		self.test_master = Toplevel(master)
 		self.master = master
 		self.userdata = params;
+		self.userdata = self.userdata['params']
 		self.init_window()
 
 	def init_window(self):

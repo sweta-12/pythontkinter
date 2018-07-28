@@ -64,27 +64,18 @@ class Dash_board(Toplevel):
 		Replication=self.entry_Replication.get()
 		Interval=self.entry_Intervals.get()
 
-		sql = "INSERT INTO test_types(type, replicate, intervals) VALUES('{}','{}','{}')".format(type, Replication, Interval)
+		sql = "INSERT INTO test_types(replicate, intervals, type) VALUES('{}','{}','{}')".format(Replication, Interval, type)
 		sql1 = "DELETE FROM test_types WHERE type=('{}')".format(type)
-		if(type == "Production"):
-			sql2 = "DELETE FROM  production_interval"
-		elif(type == "Reproduction"):
-			sql2 = "DELETE FROM  reproduction_interval"
 
-		if((type!="Production" and type!="Reproduction") or Replication=="" or Interval==""):
-			self.dashboard_master.withdraw()
-			self.messages.error("Error", "Fields Empty")
-			self.dashboard_master.deiconify()
-		elif(db.delete(sql1) & db.insert(sql)):
-			# self.messages.success("Success", "Saved Successfully!")
-			self.dashboard_master.destroy()
-			if(db.delete(sql2)):
-				insert_interval(self.master ,Interval , type)
-
+		if(db.delete(sql1)):
+			if(db.insert(sql)):
+				self.messages.success("Success", "Saved Successfully!")
 		else:
-			self.dashboard_master.withdraw()
+			dashboard_master.withdraw()
 			self.messages.error("Error", "Something went wrong!")
-			self.dashboard_master.deiconify()
+			dashboard_master.deiconify()
+
+
 	def generate(self):
 		report = xlsxwriter.Workbook("Generated Report/Report.xlsx")
 		reportsheet = report.add_worksheet()
