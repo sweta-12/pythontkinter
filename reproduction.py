@@ -14,6 +14,8 @@ class Reproduction():
 
 		self.messages = McError()
 
+		self.keypress=False
+
 		sql1 = "DELETE FROM operations WHERE type=('{}')".format("Reproduction")
 		if(self.db.delete(sql1)==False):
 			self.messages.error("Error", "Something went wrong!")
@@ -38,10 +40,13 @@ class Reproduction():
 		
 	def show_ball(self,event=None):
 		#self.start=float(self.now1.isoformat())
-		self.start = time.time()
-		self.canvas.create_oval(200,200,70,70,fill='#6666ff')
-		self.canvas.create_text(134,134,text="R",fill="white",font=("tahoma",30))
-		self.canvas.pack()
+		if (self.keypress == False) :
+			self.start = time.time()
+			self.keypress=True
+		else :
+			self.canvas.create_oval(200,200,70,70,fill='#6666ff')
+			self.canvas.create_text(134,134,text="R",fill="white",font=("tahoma",30))
+			self.canvas.pack()
 		
 		self.testcase_master.bind("<KeyRelease>", self.hide_ball)
 		#self.now2 = datetime.datetime.now()
@@ -49,8 +54,9 @@ class Reproduction():
 
 
 	def hide_ball(self,event=None):
-		self.canvas.destroy()
+		self.canvas.delete(ALL)
 		#self.end=float(self.now2.isoformat())
+		self.keypress=False
 		self.end = time.time()
 		print("start time",self.start)
 		print("end time",self.end)
