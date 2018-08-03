@@ -8,6 +8,8 @@ from errors import McError
 
 from insert_interval import insert_interval
 
+import sqlite3
+
 import xlsxwriter
 
 class Dash_board(Toplevel):
@@ -19,6 +21,9 @@ class Dash_board(Toplevel):
 		self.dashboard_master.title("DASHBOARD")
 
 		self.messages = McError()
+
+		self.db = sqlite3.connect("mindclock.db")
+		self.cursor = self.db.cursor()
 
 		self.menubar = Menu(self.dashboard_master)
 		self.filemenu = Menu(self.menubar, tearoff=0)
@@ -77,9 +82,31 @@ class Dash_board(Toplevel):
 
 
 	def generate(self):
-		report = xlsxwriter.Workbook("Generated Report/Report.xlsx")
-		reportsheet = report.add_worksheet()
-		#Widened the column
-		reportsheet.set_column('A:A', 20)
-		reportsheet.write('A1', 'Hello')
+		
+		
+		# sql="SELECT count(*) from users"
+		# self.cursor.execute(sql)
+		# result=self.cursor.fetchone()
+		# result=result[0]
+
+		usrftch=self.cursor.execute("SELECT DISTINCT user_id from operations")
+		usr=self.cursor.fetchall()
+		usr=list(sum(usr,()))
+		print(len(usr))
+		print(usr)
+		for x in usr :
+			str = "Generated Report/"+x+".xlsx"
+			report = xlsxwriter.Workbook(str)
+			sql="select replicate,production_time,reproduction_time,result_time,type from operations where user_id=('{}')".format(x)
+			mysel=self.cursor.execute(sql)
+			item=self.cursor.fetchall()
+			worksheet = report.add_worksheet(x)
+			worksheet.write('A1', 'REPLICATION')
+			worksheet.write('B1', 'PRODUCTION TIME')
+			worksheet.write('C1', 'REPRODUCTION TIME')
+			worksheet.write('D1', 'RESULT TIME')
+			worksheet.write('E1', 'TYPE')
+			for i, row in enumerate(item):
+				for j, value in enumerate(row):
+					worksheet.write(i+1, j, item[i][j])
 		report.close()

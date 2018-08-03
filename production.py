@@ -21,7 +21,7 @@ class Production:
 		self.messages = McError()
 
 		self.db = MindClockDb(self.production_master)
-		sql1 = "DELETE FROM operations WHERE type=('{}')".format("Production")
+		sql1 = "DELETE FROM operations WHERE type=('{}') AND user_id=('{}')".format("Production",self.userdata)
 		if(self.db.delete(sql1)==False):
 			self.messages.error("Error", "Something went wrong!")
 

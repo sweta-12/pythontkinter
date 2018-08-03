@@ -16,7 +16,7 @@ class Reproduction():
 
 		self.keypress=False
 
-		sql1 = "DELETE FROM operations WHERE type=('{}')".format("Reproduction")
+		sql1 = "DELETE FROM operations WHERE type=('{}') AND user_id=('{}')".format("Reproduction",self.userdata)
 		if(self.db.delete(sql1)==False):
 			self.messages.error("Error", "Something went wrong!")
 		
